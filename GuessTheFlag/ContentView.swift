@@ -21,18 +21,13 @@ struct ContentView: View {
     // Use a ZStack so that we can
     // put a background.
     ZStack {
-      // Blue to black gradient.
-      LinearGradient(gradient:
-      Gradient(
-              colors: [.blue, .black]),
-              startPoint: .top,
-              endPoint: .bottom
-      ).ignoresSafeArea(.all)
+      Color.blue.ignoresSafeArea(.all)
 
       // Space the views inside of this
       // stack a bit.
       VStack(spacing: 30) {
         VStack {
+          Spacer()
           Text("Tap the flag of").foregroundColor(.white)
           Text(countries[correctAnswer])
                   .foregroundColor(.white)
@@ -50,17 +45,24 @@ struct ContentView: View {
                     // Use rendering mode original so that
                     // SwiftUI doesn't recolor them as a button.
                     .renderingMode(.original)
-                    .clipShape(Capsule())
-                    .overlay(Capsule().stroke(Color.black, lineWidth: 1))
+                    .clipShape(RoundedRectangle(
+                            cornerRadius: 25,
+                            style: .continuous))
+                    .overlay(RoundedRectangle(
+                            cornerRadius: 25,
+                            style: .continuous)
+                            .stroke(Color.black, lineWidth: 1))
                     .shadow(color: .black, radius: 2)
           }
         }
 
-        Spacer()
-
         // Show the Score
-        Section(header: Text("Your score is")) {
+        Section(header: Text("Your score is")
+                .fontWeight(.black)
+                .font(.title2)) {
           Text("\(score)")
+                  .fontWeight(.black)
+                  .font(.title)
         }
 
         // Push things up.
