@@ -36,12 +36,9 @@ struct ContentView: View {
         }
 
         // Display the flags.
-        ForEach(0..<3) {
-          n in
-          Button(action: {
-            self.checkAnswer(n)
-          }) {
-            Image(countries[n])
+        ForEach(0..<3) { index in
+          Button(action: { self.checkAnswer(index) }, label: {
+            Image(countries[index])
                     // Use rendering mode original so that
                     // SwiftUI doesn't recolor them as a button.
                     .renderingMode(.original)
@@ -53,7 +50,7 @@ struct ContentView: View {
                             style: .continuous)
                             .stroke(Color.black, lineWidth: 1))
                     .shadow(color: .black, radius: 2)
-          }
+          })
         }
 
         // Show the Score
@@ -81,10 +78,10 @@ struct ContentView: View {
   // Checks if the tapped flag is the correct answer
   // and if it is sets showingScore to true so the alert
   // triggers and increments the score.
-  func checkAnswer(_ n: Int) {
-    if n == correctAnswer {
+  func checkAnswer(_ index: Int) {
+    if index == correctAnswer {
       scoreTitle = "Correct"
-      score = score + 1
+      score += 1
     } else {
       scoreTitle = "Wrong"
     }

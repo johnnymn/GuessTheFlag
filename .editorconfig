@@ -16,6 +16,10 @@ ij_smart_tabs = false
 ij_visual_guides = none
 ij_wrap_on_typing = false
 
+[*Makefile]
+indent_size = 4
+indent_style = tab
+
 [*.swift]
 ij_swift_align_group_field_declarations = false
 ij_swift_align_multiline_array_initializer_expression = true
